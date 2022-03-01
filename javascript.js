@@ -11,16 +11,18 @@ game();
 
 //The game starts, and starts over until either one has 3 points.
 function game() {
-    
-    while(playerScore < 3 && computerScore < 3) {
+
+    while (playerScore < 3 && computerScore < 3) {
         checkResult(getPlayerChoise(), getComputerChoise())
     }
 
-    if (playerScore > computerScore) { 
-        console.log(`YOU WIN!
-        FINAL SCORE: ${score}`);
-    } else console.log(`YOU LOSE!
-FINAL SCORE: ${score}`);
+    if (playerScore > computerScore) {
+        console.log(`YOU WIN!`);
+        console.log(`FINAL SCORE: ${score}`);
+    } else {
+        console.log(`YOU LOSE!`);
+        console.log(`FINAL SCORE: ${score}`);
+    }
 }
 
 
@@ -35,17 +37,17 @@ function getPlayerChoise() {
 
 
     while (!validateChoise(choise)) {
-        alert("check your spelling")
+        alert("check your spelling");
         choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
-    }  
-    
+    }
+
     return choise;
-    
+
 }
 
 // Checks if the choise is spelled correctly and returns true or false accordingly
 function validateChoise(choise) {
-    
+
     if (choise === "rock" || choise === "paper" || choise === "scissors") {
         return true;
 
@@ -72,9 +74,9 @@ Tells the player the choises of them and their computer
 Check which one will win, computer or player
 */
 function checkResult(playerChoise, computerChoise) {
-    
-    console.log(`You chose: ${playerChoise}
-The computer chose: ${computerChoise}`)
+
+    console.log(`You chose: ${playerChoise}`);
+    console.log(`The computer chose: ${computerChoise}`);
 
     if (playerChoise == "rock") {
         if (computerChoise == "rock") even();
@@ -106,26 +108,24 @@ The computer chose: ${computerChoise}`)
 
 /* Tells the user the result of the round and updates the score*/
 function even() {
-    console.log(`its a tie, again!
-${score}`)
-    
+    console.log(`its a tie, again!`)
+    console.log(`${score}`)
+
 }
 
 /* Tells the user the result of the round and updates the score */
 function win() {
     score = (`Player: ${++playerScore} Computer: ${computerScore}`);
-    console.log(`YOU WIN! 
-${score}`)
+    console.log(`YOU WIN!`)
+    console.log(`${score}`)
 
 }
 
 /* Tells the user the result of the round and updates the score*/
 function lose() {
     score = (`Player: ${playerScore} Computer: ${++computerScore}`);
-    console.log(`You lose.
-${score}`)
+    console.log(`You lose.`);
+    console.log(`${score}`);
 
 }
-
-
 
