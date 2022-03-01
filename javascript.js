@@ -4,108 +4,95 @@
 
 /*Player chooses rock papaer or scissors and it will be validated, then computer randomizez its choise, then program will check witch one won, and continue approprately */
 
-const playerChoise = playerChoise();
-const computerChoise = computerChoise();
-        
+const playersChoise = playerChoise();
+const computersChoise = computerChoise();
+
+checkResult(playersChoise, computersChoise);
+
+
+
 //Ask the player theys choise and validate it and return it.
-playerChoise{
-            
-    let choise = prompt("give me your choise: Enter: "rock", "paper" or "scissors")
-            
-        if(!validateChoise(choise)) {
-                alert("check your spelling")
-                playerChoise(); 
-            } else {
-                return choise;
-            }
- 
-        }        
+function playerChoise() {
+
+    let choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
+
+    if (!validateChoise(choise)) {
+        alert("check your spelling")
+        playerChoise();
+    } else {
+        return choise;
     }
-    
-validateChoise(choise) {
-            if choise === rock || if choise === paper || id choise === "scissors"
-                return true;
-            else
-                return false;
-        }
-        
-  
-    
-        3. Computer chooses a rock or paper or siccsors
+}
 
-        const computerChoise = computerChoise();
+// Checks if the choise is spelled correctly and returns true or false accordingly
+function validateChoise(choise) {
 
-        comPuterChoose{
-            
-            choose = random()1-3;
-            
+    if (choise === "rock" || choise === "paper" || choise === "scissors") {
+        return true;
 
-            if choose 1 = choise = rock
-            if choise 2 = choise = paper
-            id choise 3 = choise = scissores
-            
-            return computerChoise;
-        }
+    } else {
+        return false;
+    }
+}
 
-    
-    
 
-    4 a function checks, which one will win and show it to the player
-        
-        checkResult(playerChoise, computerChoise) {
-            
-            if playerChoise == "rock" {
-                if computerChoise == "rock"{
-                    even()
-                }               
-                if compiter Choise == "paper"
-                    lost()
-                }
-                if compuiteChoise == "scissors"
-                    won()
-            }
+// Generate a random number between 0-0.999, and choose the computers choise accordingly
+function computerChoise() {
 
-            if playerChoise == "paper" {
-                if computerChoise == "rock"{
-                    even()
-                }
-                if compiter Choise == "paper"
-                    lost()
-                }
-                if compuiteChoise == "scissors"
-                    won()
-            }
+    let choise = Math.random();
 
-            if playerChoise == "scissors" {
-                if computerChoise == "rock"{
-                    even()
-                } 
-                if compiter Choise == "paper"
-                    lost()
-                }
-                if compuiteChoise == "scissors"
-                    won()
-            }
+    if (choise < 0.33) return "rock";
+    if (choise > 0.33 && choise < 0.66) return "paper";
+    if (choise > 0.66) return "scissors";
 
-         
-             
-        }
+}
 
-    even() {
-        alert("its a tie, again!")
-        restart();
+
+// Check which one will win, computer or player
+function checkResult(playerChoise, computerChoise) {
+
+    if (playerChoise == "rock") {
+        if (computerChoise == "rock") even();
+
+        if (computerChoise == "paper") lose();
+
+        if (computerChoise == "scissors") win();
     }
 
-    win() {
-        alert("YOU WIN!")
-        restart();
+    if (playerChoise == "paper") {
+        if (computerChoise == "paper") even();
+
+        if (computerChoise == "scissors") lose();
+
+        if (computerChoise == "rock") win()
     }
 
-    lose() {
-        alert("You lose, try again")
-        restart();
+    if (playerChoise == "scissors") {
+        if (computerChoise == "scissors") even();
+
+        if (computerChoise == "rock") lose();
+
+        if (computerChoise == "paper") win();
+
     }
-        
-    
-    
-   
+
+
+}
+
+function even() {
+    alert("its a tie, again!")
+
+}
+
+function win() {
+    alert("YOU WIN!")
+
+}
+
+function lose() {
+    alert("You lose, try again")
+
+}
+
+
+
