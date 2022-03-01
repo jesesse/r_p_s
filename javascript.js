@@ -4,10 +4,26 @@
 
 /*Player chooses rock papaer or scissors and it will be validated, then computer randomizez its choise, then program will check witch one won, and continue approprately */
 
-const playersChoise = playerChoise();
-const computersChoise = computerChoise();
+let playerScore = 0;
+let computerScore = 0;
+let score = (`Player: ${playerScore} Computer: ${computerScore}`);
 
-checkResult(playersChoise, computersChoise);
+game();
+
+function game() {
+    
+    while(playerScore < 3 && computerScore < 3) {
+        checkResult(playerChoise(), computerChoise())
+    }
+
+    if (playerScore > computerScore) { 
+        console.log(`YOU WIN!
+        FINAL SCORE: ${score}`);
+    } else console.log(`YOU LOSE!
+FINAL SCORE: ${score}`);
+}
+
+
 
 
 
@@ -16,17 +32,19 @@ function playerChoise() {
 
     let choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
 
-    if (!validateChoise(choise)) {
+
+    while (!validateChoise(choise)) {
         alert("check your spelling")
-        playerChoise();
-    } else {
-        return choise;
-    }
+        choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
+    }  
+    
+    return choise;
+    
 }
 
 // Checks if the choise is spelled correctly and returns true or false accordingly
 function validateChoise(choise) {
-
+    
     if (choise === "rock" || choise === "paper" || choise === "scissors") {
         return true;
 
@@ -50,6 +68,9 @@ function computerChoise() {
 
 // Check which one will win, computer or player
 function checkResult(playerChoise, computerChoise) {
+    
+    console.log(`You chose: ${playerChoise}
+The computer chose: ${computerChoise}`)
 
     if (playerChoise == "rock") {
         if (computerChoise == "rock") even();
@@ -80,17 +101,22 @@ function checkResult(playerChoise, computerChoise) {
 }
 
 function even() {
-    alert("its a tie, again!")
-
+    console.log(`its a tie, again!
+${score}`)
+    
 }
 
 function win() {
-    alert("YOU WIN!")
+    score = (`Player: ${++playerScore} Computer: ${computerScore}`);
+    console.log(`YOU WIN! 
+${score}`)
 
 }
 
 function lose() {
-    alert("You lose, try again")
+    score = (`Player: ${playerScore} Computer: ${++computerScore}`);
+    console.log(`You lose.
+${score}`)
 
 }
 
