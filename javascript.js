@@ -1,59 +1,37 @@
 
-/* Game of Rock Paper Scissors. Race to 3. */
+/* Game of Rock Paper Scissors. Race to 5. */
+
+const results = document.querySelector('.results')
+const message = document.querySelector('.message')
+const message2 = document.querySelector('.message2')
+const result = document.querySelector('.result')
+const buttons = document.querySelectorAll('button')
+
+for(btn of buttons){
+    btn.addEventListener("click", game)
+}
+
 
 let playerScore = 0;
 let computerScore = 0;
 let score = (`Player: ${playerScore} Computer: ${computerScore}`);
+let playerChoise;
 
 
-//Starts the game. 
-game();
-
-//The game starts, and starts over until either one has 3 points.
-function game() {
-
-    while (playerScore < 3 && computerScore < 3) {
-        checkResult(getPlayerChoise(), getComputerChoise())
-    }
-
-    if (playerScore > computerScore) {
-        console.log(`YOU WIN!`);
-        console.log(`FINAL SCORE: ${score}`);
-    } else {
-        console.log(`YOU LOSE!`);
-        console.log(`FINAL SCORE: ${score}`);
-    }
+function restart(){
+    playerScore = 0;
+    computerScore = 0;
+    score = (`Player: ${playerScore} Computer: ${computerScore}`);
+    console.clear();
+    return;
 }
 
 
-/*
-Asks the player their choise, 
-then asks a validate-function to validate it until player gives a answer in correct form, 
-then return the choise. 
-*/
-function getPlayerChoise() {
+function game(e) {
+    
+    playerChoise = e.target.className;
+    checkResult(playerChoise, getComputerChoise())
 
-    let choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
-
-
-    while (!validateChoise(choise)) {
-        alert("check your spelling");
-        choise = prompt("Choose either 'rock', 'paper' or 'scissors'", "");
-    }
-
-    return choise;
-
-}
-
-// Checks if the choise is spelled correctly and returns true or false accordingly
-function validateChoise(choise) {
-
-    if (choise === "rock" || choise === "paper" || choise === "scissors") {
-        return true;
-
-    } else {
-        return false;
-    }
 }
 
 
@@ -75,8 +53,8 @@ Check which one will win, computer or player
 */
 function checkResult(playerChoise, computerChoise) {
 
-    console.log(`You chose: ${playerChoise}`);
-    console.log(`The computer chose: ${computerChoise}`);
+    message2.textContent = `You chose: ${playerChoise.toUpperCase()} & The computer chose: ${computerChoise.toUpperCase()}`;
+
 
     if (playerChoise == "rock") {
         if (computerChoise == "rock") even();
@@ -108,24 +86,36 @@ function checkResult(playerChoise, computerChoise) {
 
 /* Tells the user the result of the round and updates the score*/
 function even() {
-    console.log(`its a tie, again!`)
-    console.log(`${score}`)
+    message.textContent = `its a tie, again!`;
+    result.textContent = `${score}`
 
 }
 
 /* Tells the user the result of the round and updates the score */
 function win() {
     score = (`Player: ${++playerScore} Computer: ${computerScore}`);
-    console.log(`YOU WIN!`)
-    console.log(`${score}`)
+    if (playerScore == 5) {
+        message.textContent = "WOU WIN THE WHOLE SHIT";
+        result.textContent = score;
+        restart();
+        return;
+    }     
+    message.textContent =`YOU WIN!`;
+    result.textContent =`${score}`;
 
 }
 
 /* Tells the user the result of the round and updates the score*/
 function lose() {
     score = (`Player: ${playerScore} Computer: ${++computerScore}`);
-    console.log(`You lose.`);
-    console.log(`${score}`);
+    if (computerScore == 5) {
+        message.textContent = "WOU LOSE THE WHOLE SHIT";
+        result.textContent = score;
+        restart();
+        return;
+    }  
+    message.textContent =`You lose.`;
+    result.textContent = `${score}`;
 
 }
 
