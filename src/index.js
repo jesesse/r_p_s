@@ -3,8 +3,7 @@ import { UI } from "./ui";
 import './styles/main.css';
 
 const DOM = UI();
-DOM.renderPlayerWeaponOptions();
-DOM.renderScoreArea();
+DOM.renderGame();
 
 const game = Game();
 game.playGameLoop();

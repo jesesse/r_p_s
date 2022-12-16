@@ -1,8 +1,9 @@
 import { Player } from "./player";
-
+import { UI } from "./ui";
 
 export const Game = () => {
     
+    const DOM = UI();
     const player1 = Player(false);
     const cpu = Player(true);
 
@@ -10,9 +11,6 @@ export const Game = () => {
         
         let cpuWeapon = cpu.pickWeapon();
         let player1Weapon = player1.pickWeapon();
-
-        console.log(player1Weapon)
-        console.log(cpuWeapon)
 
 
         if (player1Weapon === "rock") {
@@ -30,11 +28,8 @@ export const Game = () => {
             if (cpuWeapon === "paper") player1.win()
         }
 
-        console.log(player1.getScore())
-        console.log(cpu.getScore())
-
-        console.log('--------------------------------------------------')
-
+        DOM.renderScoreArea(player1.getScore(), cpu.getScore());
+        
         if (player1.getScore() === 5 || cpu.getScore() === 5) return;
         else playGameLoop();
     }
