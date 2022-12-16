@@ -1,12 +1,12 @@
 export const Player = () => {
-    let hp = 5;
+    let score = 0;
 
-    const takeDamage = () => {
-        hp--;
+    const win = () => {
+        score++;
     }
 
-    const getHp = () => {
-        return hp;
+    const getScore = () => {
+        return score;
     }
 
     const pickWeapon = () => {
@@ -20,8 +20,8 @@ export const Player = () => {
     }
 
     return {
-        getHp,
+        getScore,
         pickWeapon,
-        takeDamage
+        win
     }
 }
