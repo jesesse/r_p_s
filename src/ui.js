@@ -20,8 +20,16 @@ export const UI = () => {
     
     const renderScoreArea = (playerScore = 0, cpuScore = 0) => {
         const scoreArea = document.createElement('div')
-        const playerScoreContainer = document.createElement()
+        const playerScoreContainer = document.createElement('div')
+        const cpuScoreContainer = document.createElement('div')
 
+        playerScoreContainer.textContent = `player score: ${playerScore}`;
+        cpuScoreContainer.textContent = `player score: ${cpuScore}`;
+
+        scoreArea.appendChild(playerScoreContainer);
+        scoreArea.appendChild(cpuScoreContainer);
+
+        document.body.appendChild(scoreArea);
     }
 
     return{
