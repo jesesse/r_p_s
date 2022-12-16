@@ -4,6 +4,13 @@ import './styles/main.css';
 
 const DOM = UI();
 DOM.renderGame();
-
 const game = Game();
-game.playGameLoop();
+
+let btns = document.querySelectorAll('button');
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const playerWapon = btn.textContent;
+        console.log(playerWapon);
+        game.playGameLoop(playerWapon)
+    })
+})
