@@ -1,9 +1,9 @@
 export const UI = () => {
 
     const renderPlayerWeaponOptions = () => {
-        const rock = document.createElement('div')
-        const paper = document.createElement('div')
-        const scissors = document.createElement('div')
+        const rock = document.createElement('button')
+        const paper = document.createElement('button')
+        const scissors = document.createElement('button')
 
         rock.setAttribute('id', 'rock');
         paper.setAttribute('id', 'paper');
@@ -17,8 +17,15 @@ export const UI = () => {
         document.body.appendChild(paper)
         document.body.appendChild(scissors)
     }
+    
+    const renderScoreArea = (playerScore = 0, cpuScore = 0) => {
+        const scoreArea = document.createElement('div')
+        const playerScoreContainer = document.createElement()
+
+    }
 
     return{
-        renderPlayerWeaponOptions
+        renderPlayerWeaponOptions,
+        renderScoreArea
     }
 }
